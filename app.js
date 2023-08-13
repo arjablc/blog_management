@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const { blogModel, sequelize } = require("./model/index");
+const { where } = require("sequelize");
 
 //setting the view engine to use ejs
 app.set("View Engine", "ejs");
@@ -8,8 +9,20 @@ app.set("View Engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-	res.render("./home/home.ejs");
+app.get("/", async (req, res) => {
+	//getting all the blogs
+	const allBlogs = await blogModel.findAll();
+	res.render("./home/home.ejs", { blogs: allBlogs });
+});
+
+app.get("/single-blog/:id", (req, res) => {
+	const id = req.params.id;
+	const singleBlog = blogModel.findAll({
+		where: {
+			id,
+		},
+	});
+	res.render("./single_blog/single_blog.ejs", { blog: singleBlog });
 });
 
 app.get("/add-blog", (req, res) => {
@@ -21,7 +34,7 @@ app.post("/add-blog", async (req, res) => {
 	const { title, subtitle, description } = req.body;
 
 	//putting the data coming from the req to db
-	await blogModel.create({
+	const newBlog = await blogModel.create({
 		title: title,
 		subtitle: subtitle,
 		description: description,
