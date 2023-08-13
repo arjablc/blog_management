@@ -3,7 +3,72 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title><%- blog.title %></title>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+		/>
+
+		<title><%- singleBlog.title %></title>
+		<style>
+			.single-blog {
+				padding: 20px;
+				margin: 80px;
+				display: flex;
+				justify-content: start;
+				flex-direction: column;
+				align-items: start;
+				background-color: rgb(71, 71, 71);
+			}
+			.single-blog h1,
+			h2,
+			p {
+				margin-left: 20px;
+			}
+			h2 {
+				margin-top: 10px;
+				margin-bottom: 20px;
+				color: gray;
+			}
+			.buttons {
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: end;
+				align-content: start;
+				margin-left: 20px;
+			}
+			button {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				border: none;
+				border-radius: 10px;
+				padding: 0.5em;
+				font-size: 1rem;
+				margin-right: 20px;
+			}
+			hr {
+				margin-bottom: 20px;
+				color: white;
+				width: 100%;
+				/* padding: 0px 10px 0px 10px; */
+			}
+		</style>
 	</head>
-	<body></body>
+	<body>
+		<%- include("../navbar.ejs"); %>
+		<div class="single-blog">
+			<h1><%- singleBlog.title %></h1>
+			<h2><%- singleBlog.subtitle %></h2>
+			<p><%- singleBlog.description %></p>
+			<hr />
+			<div class="buttons">
+				<button>
+					<span class="material-symbols-outlined"> edit </span>Edit</button
+				><button style="background-color: rgb(134, 2, 2)">
+					<span class="material-symbols-outlined"> delete </span>Delete
+				</button>
+			</div>
+		</div>
+	</body>
 </html>
