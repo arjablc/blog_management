@@ -1,7 +1,7 @@
 module.exports = {
 	HOST: "localhost",
 	DIALECT: "mysql",
-	DB: "blogs",
+	DB: "blogs_management",
 	USER: "root",
 	PASSWROD: "",
 	POOL: {
