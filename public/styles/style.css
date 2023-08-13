@@ -1,0 +1,31 @@
+body {
+	background-color: rgb(34, 33, 33);
+	color: white;
+	margin-top: 100px;
+}
+
+.nav-bar {
+	display: flex;
+	background-color: gray;
+	height: 75px;
+	margin-left: 0;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+.nav-bar a {
+	margin: 20px;
+	width: 10%;
+	padding: 10px 10px 10px 10px;
+	background-color: black;
+	color: white;
+	text-decoration: none;
+	text-align: center;
+	transition: all 0.4s;
+}
+.nav-bar a:hover {
+	padding-top: 100px;
+	padding-bottom: 50px;
+}

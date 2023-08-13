@@ -5,7 +5,7 @@ const { where } = require("sequelize");
 
 //setting the view engine to use ejs
 app.set("View Engine", "ejs");
-
+app.use(express.static("./public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -15,14 +15,12 @@ app.get("/", async (req, res) => {
 	res.render("./home/home.ejs", { blogs: allBlogs });
 });
 
-app.get("/single-blog/:id", (req, res) => {
+app.get("/single-blog/:id", async (req, res) => {
 	const id = req.params.id;
-	const singleBlog = blogModel.findAll({
-		where: {
-			id,
-		},
-	});
-	res.render("./single_blog/single_blog.ejs", { blog: singleBlog });
+	const singleBlog = await blogModel.findByPk(id); // this will use your primary key to find the single entity
+	//you can also use .findAll({where: {col_name: parameter}}) to search for all the entities with the parameter passed
+	//! However in that case you need to treat the return value as an array...
+	res.render("./single_blog/single_blog.ejs", { singleBlog });
 });
 
 app.get("/add-blog", (req, res) => {

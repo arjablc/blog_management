@@ -6,30 +6,14 @@
 		<title>Welcome to blog site</title>
 		<link rel="stylesheet" href="style.css" />
 		<style>
-			.nav-bar {
-				display: flex;
+			* {
+				margin: none;
+				padding: none;
+			}
 
-				background-color: gray;
-				height: 100px;
-				width: 100%;
-
-				position: fixed;
-			}
-			.content {
-				padding-top: 10%;
-			}
-			.nav-bar a {
-				margin: 20px;
-				width: auto;
-				padding: 10px 10px 10px 10px;
-				background-color: black;
-				color: white;
-				text-decoration: none;
-				transition: all 0.4s;
-			}
-			.nav-bar a:hover {
-				padding-top: 100px;
-				padding-bottom: 100px;
+			body {
+				margin-top: 100px;
+				padding: none;
 			}
 			.blog-container {
 				display: flex;
@@ -45,39 +29,44 @@
 				justify-content: flex-start;
 				height: 33.3;
 				width: 33.3%;
-				background-color: rgb(112, 116, 217);
+				background-color: rgb(71, 71, 71);
 			}
-
 			.card h2 {
 				font-size: 2rem;
 			}
 			.card h3 {
 				margin-top: 0;
 				font-size: 1rem;
-				color: rgb(70, 70, 70);
+			}
+
+			.card-link {
+				color: white;
+			}
+			.card-link:visited {
+				color: rgb(164, 164, 164);
 			}
 		</style>
 	</head>
 
 	<body>
-		<nav class="nav-bar">
-			<a href="/">Home</a> <a href="/add-blog">Add Blog to site</a>
-		</nav>
-		<div class="content">
-			<h1>Welcome to the Blog site.</h1>
+		<h1>Welcome to the Blog site.</h1>
+		<%- include ("../navbar.ejs"); %>
 
-			<div class="blogs-contianer">
-				<!-- this code below is a js code...(benifits of ejs) -->
-				<% blogs.forEach((blog) => { %>
-				<a href="/single-blog/<%- blog.id %>" style="text-decoration: none">
-					<div class="card">
-						<h2><%- blog.title %></h2>
-						<h3><%- blog.subtitle %></h3>
-						<p><%- blog.description %></p>
-					</div>
-				</a>
-				<% }) %>
-			</div>
+		<div class="blogs-container">
+			<!-- this code below is a js code...(benifits of ejs) -->
+			<% blogs.forEach((blog) => { %>
+			<a
+				class="card-link"
+				href="/single-blog/<%- blog.id %>"
+				style="text-decoration: none"
+			>
+				<div class="card">
+					<h2><%- blog.title %></h2>
+					<h3><%- blog.subtitle %></h3>
+					<p><%- blog.description %></p>
+				</div>
+			</a>
+			<% }) %>
 		</div>
 	</body>
 </html>
