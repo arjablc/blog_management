@@ -37,7 +37,7 @@
 				align-content: start;
 				margin-left: 20px;
 			}
-			button {
+			a {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
@@ -46,12 +46,19 @@
 				padding: 0.5em;
 				font-size: 1rem;
 				margin-right: 20px;
+				background-color: white;
+				font-family: sans-serif;
 			}
 			hr {
 				margin-bottom: 20px;
 				color: white;
 				width: 100%;
 				/* padding: 0px 10px 0px 10px; */
+			}
+			a {
+				text-decoration: none;
+				color: black;
+				cursor: pointer;
 			}
 		</style>
 	</head>
@@ -63,11 +70,16 @@
 			<p><%- singleBlog.description %></p>
 			<hr />
 			<div class="buttons">
-				<button>
-					<span class="material-symbols-outlined"> edit </span>Edit</button
-				><button style="background-color: rgb(134, 2, 2)">
+				<a href="">
+					<span class="material-symbols-outlined"> edit </span>Edit
+				</a>
+
+				<a
+					href="/delete/<%- singleBlog.id %>"
+					style="background-color: rgb(134, 2, 2)"
+				>
 					<span class="material-symbols-outlined"> delete </span>Delete
-				</button>
+				</a>
 			</div>
 		</div>
 	</body>

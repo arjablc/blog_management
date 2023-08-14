@@ -27,6 +27,14 @@ app.get("/add-blog", (req, res) => {
 	res.render("./add_blog/add_blog.ejs");
 });
 
+//! the delete and the update make the api non restful
+app.get("/delete/:id", async (req, res) => {
+	const id = req.params.id;
+	console.log(id);
+	await blogModel.destroy({ where: { id } });
+	res.redirect("/");
+});
+
 app.post("/add-blog", async (req, res) => {
 	//accessing the data coming in the req body
 	const { title, subtitle, description } = req.body;
