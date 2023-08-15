@@ -8,7 +8,7 @@
 			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
 		/>
 
-		<title><%- singleBlog.title %></title>
+		<title><%- title %></title>
 		<style>
 			.single-blog {
 				padding: 20px;
@@ -37,7 +37,7 @@
 				align-content: start;
 				margin-left: 20px;
 			}
-			a {
+			.buttons a {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
@@ -65,17 +65,19 @@
 	<body>
 		<%- include("../navbar.ejs"); %>
 		<div class="single-blog">
-			<h1><%- singleBlog.title %></h1>
-			<h2><%- singleBlog.subtitle %></h2>
-			<p><%- singleBlog.description %></p>
+			<h1><%- title %></h1>
+			<h2><%- subtitle %></h2>
+
+			<p><%- description %></p>
+
 			<hr />
 			<div class="buttons">
-				<a href="">
+				<a href="/edit/<%- blogId %>">
 					<span class="material-symbols-outlined"> edit </span>Edit
 				</a>
 
 				<a
-					href="/delete/<%- singleBlog.id %>"
+					href="/delete/<%- blogId %>"
 					style="background-color: rgb(134, 2, 2)"
 				>
 					<span class="material-symbols-outlined"> delete </span>Delete

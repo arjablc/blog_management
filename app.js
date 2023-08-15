@@ -17,10 +17,16 @@ app.get("/", async (req, res) => {
 
 app.get("/single-blog/:id", async (req, res) => {
 	const id = req.params.id;
-	const singleBlog = await blogModel.findByPk(id); // this will use your primary key to find the single entity
+	const { blogId, title, subtitle, description } = await blogModel.findByPk(id); // this will use your primary key to find the single entity
 	//you can also use .findAll({where: {col_name: parameter}}) to search for all the entities with the parameter passed
 	//! However in that case you need to treat the return value as an array...
-	res.render("./single_blog/single_blog.ejs", { singleBlog });
+	const formattedDescription = description.replace(/\n/g, "<br>");
+	res.render("./single_blog/single_blog.ejs", {
+		blogId,
+		title,
+		subtitle,
+		description: formattedDescription,
+	});
 });
 
 app.get("/add-blog", (req, res) => {
@@ -32,6 +38,25 @@ app.get("/delete/:id", async (req, res) => {
 	const id = req.params.id;
 	console.log(id);
 	await blogModel.destroy({ where: { id } });
+	res.redirect("/");
+});
+
+//editing the blog
+app.get("/edit/:id", async (req, res) => {
+	const id = req.params.id;
+	const currentBlog = await blogModel.findByPk(id);
+	res.render("./edit_blog/edit_blog.ejs", { currentBlog });
+});
+app.post("/edit/:id", async (req, res) => {
+	const id = req.params.id;
+	//to update the database sequelize has 2 ways
+	//one is to use the save method that updates every change on the model
+	//other is the update method that updates the thing that is specified in the method
+
+	await blogModel.update(req.body, {
+		where: { id: id },
+	});
+
 	res.redirect("/");
 });
 
