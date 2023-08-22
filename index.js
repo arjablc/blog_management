@@ -1,19 +1,10 @@
-const express = require("express");
-const app = express();
+const app = require("./src/app");
 const { blogModel, sequelize } = require("./model/index");
 const { where } = require("sequelize");
 
 //setting the view engine to use ejs
-app.set("View Engine", "ejs");
-app.use(express.static("./public"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-app.get("/", async (req, res) => {
-	//getting all the blogs
-	const allBlogs = await blogModel.findAll();
-	res.render("./home/home.ejs", { blogs: allBlogs });
-});
+
 
 app.get("/single-blog/:id", async (req, res) => {
 	const id = req.params.id;
