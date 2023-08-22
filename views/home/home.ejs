@@ -58,11 +58,7 @@
 		<div class="blogs-container">
 			<!-- this code below is a js code...(benifits of ejs) -->
 			<% blogs.forEach((blog) => { %>
-			<a
-				class="card-link"
-				href="/single-blog/<%- blog.id %>"
-				style="text-decoration: none"
-			>
+			<a class="card-link" href="/<%- blog.id %>" style="text-decoration: none">
 				<div class="card">
 					<h2><%- blog.title %></h2>
 					<h3><%- blog.subtitle %></h3>

@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => console.log("homepage"));
+router.get("/", (req, res) => {
+	res.render("./home/home.ejs");
+});
 
 module.exports = router;

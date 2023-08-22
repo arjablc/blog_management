@@ -34,16 +34,30 @@
 				font-size: 2rem;
 				display: block;
 			}
+
+			textarea {
+				font-family: Arial, Helvetica, sans-serif;
+			}
 		</style>
 	</head>
 	<body>
 		<%- include("../navbar.ejs"); %>
 		<div class="form-area">
-			<form action="/add-blog" method="post">
+			<form action="/blog/edit/<%- currentBlog.id %>" method="post">
 				<label for="title">Title of your blog:</label>
-				<input type="text" name="title" id="title" maxlength="50" />
+				<input
+					type="text"
+					name="title"
+					id="title"
+					value="<%- currentBlog.title %>"
+				/>
 				<label for="subtitle">Subtitle:</label>
-				<input type="text" name="subtitle" id="subtitle" maxlength="150" />
+				<input
+					type="text"
+					name="subtitle"
+					id="subtitle"
+					value="<%- currentBlog.subtitle %>"
+				/>
 				<label for="description">Description:</label>
 				<textarea
 					name="description"
@@ -51,7 +65,10 @@
 					cols="auto"
 					rows="10"
 					style="resize: none"
-				></textarea>
+				>
+<%- currentBlog.description %>
+            </textarea
+				>
 				<input type="submit" value="Submit" />
 			</form>
 		</div>
