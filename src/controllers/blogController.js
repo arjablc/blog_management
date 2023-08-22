@@ -1,14 +1,19 @@
+const { name } = require("ejs");
+const {
+	models: { blogModel },
+} = require("../database/database.js");
+
 module.exports = {
 	singleBlogView: async (req, res) => {
 		const id = req.params.id;
-		const { blogId, title, subtitle, description } = await blogModel.findByPk(
-			id
-		); // this will use your primary key to find the single entity
+
+		const { title, subtitle, description } = await blogModel.findByPk(id); // this will use your primary key to find the single entity
 		//you can also use .findAll({where: {col_name: parameter}}) to search for all the entities with the parameter passed
 		//! However in that case you need to treat the return value as an array...
+
 		const formattedDescription = description.replace(/\n/g, "<br>");
 		res.render("./single_blog/single_blog.ejs", {
-			blogId,
+			id,
 			title,
 			subtitle,
 			description: formattedDescription,
@@ -16,6 +21,7 @@ module.exports = {
 	},
 	editBlogView: async (req, res) => {
 		const id = req.params.id;
+		console.log(id);
 		const currentBlog = await blogModel.findByPk(id);
 		res.render("./edit_blog/edit_blog.ejs", { currentBlog });
 	},
